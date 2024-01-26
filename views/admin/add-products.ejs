@@ -1,0 +1,140 @@
+
+<div class="container-fluid p-0 min-vh-100" style="margin-top: 10%">
+    <%- include('../partials/adminheader.ejs') %>
+
+    <div class="container"  >
+        <div class="row">
+            <div class="col-md-6 mx-auto" style="background-color: rgba(109, 185, 181, 0.709); border: 2px solid rgb(17, 132, 182); border-radius: 15px;height: 450px; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; color: whitesmoke;"> <!-- Center the form on medium screens -->
+                <h2 class="text-center" id="pro-addheader">Add Products</h2>
+                <% if (locals.msg) { %>
+                    <div class="alert alert-success">
+                        <strong><%= msg %> </strong>
+                    </div>  
+                <% } %>
+                <p class="text-center text-success"><%= msg %></p>
+                <p class="text-success text-center"></p>
+                <form action="/admin/add-product" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" id="add-pro">
+                   <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                            <div id="error-messages" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="category">Category</label>
+                            <select class="form-select" name="category" id="category" aria-label="Default select example">
+                                <% categoryName.forEach((category) => { %>
+                                <option value="<%= category.categoryName %> "><%= category.categoryName %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                   </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="originalprice">Price</label>
+                                <input type="number" name="originalprice" id="originalprice" class="form-control">
+                                <div id="error-messages" class="text-danger"></div>
+
+                            </div>
+                        </div>
+    
+                       <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="offers">Offers</label>
+                            <input type="number" name="offers" id="offers" class="form-control">
+                            <div id="error-messages" class="text-danger"></div>
+                        </div>
+                       </div>
+                    </div>
+
+                   <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control">
+                        <div id="error-messages" class="text-danger"></div>
+                    </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label for="discription">Description</label>
+                        <input type="text" name="discription" id="discription" class="form-control">
+                        <div id="error-messages" class="text-danger"></div>
+                    </div>
+                   </div>
+
+                    <div class="mb-3">
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="formFileMultiple" class="form-control" multiple>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success mt-4">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var originalprice = parseFloat(document.getElementById('originalprice').value);
+        var offers = parseFloat(document.getElementById('offers').value);
+        var quantity = parseInt(document.getElementById('quantity').value);
+
+        var errors = [];
+
+        if (name.trim() === '') {
+            errors.push('Name is required.');
+        }
+
+        if (originalprice < 0) {
+            errors.push('Price cannot be negative.');
+        } 
+        if(originalprice.trim() === ''){
+            errors.push('Price is required.');
+        }
+
+        if (offers < 0) {
+            errors.push('Offers cannot be negative.');
+        } 
+        if(offers.trim() === ''){
+            errors.push('Offers is required.');
+        }
+
+        if (quantity < 0) {
+            errors.push('Quantity cannot be negative.');
+        }
+        if(quantity.trim() === ''){
+            errors.push('Quantity is required.');
+        }
+
+        var errorDiv = document.getElementById('error-messages');
+        errorDiv.innerHTML = '';
+
+        if (errors.length > 0) {
+            for (var i = 0; i < errors.length; i++) {
+                var errorPara = document.createElement('p');
+                errorPara.textContent = errors[i];
+                errorDiv.appendChild(errorPara);
+            }
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+
+
+
+
+
+
+
