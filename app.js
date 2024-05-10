@@ -19,14 +19,15 @@ app.use(
 //multer image for banners
 app.use("/banner", express.static(path.resolve(__dirname, "banner")));
 
-dotenv.config({ path: path.join(__dirname, "config/config.env") });
+// dotenv.config({ path: path.join(__dirname, "config/config.env") });
+dotenv.config();
 
 app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //mongodb connection
 mongoose
