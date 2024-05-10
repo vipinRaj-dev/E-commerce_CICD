@@ -11,8 +11,11 @@ const { v4: uuid4 } = require("uuid");
 
 const bcrypt = require("bcrypt");
 
-const key_id = process.env.key_id;
-const key_secret = process.env.key_secret;
+// const key_id = process.env.key_id;
+// const key_secret = process.env.key_secret;
+
+const key_id = 'rzp_test_CgcP2K4gvWASWN'
+const key_secret = 'BzRL06sbJ5R4zglo5FwuSSua'
 
 const fast2sms = require("fast-two-sms");
 const API =
