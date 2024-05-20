@@ -478,7 +478,7 @@ const signout = (req, res) => {
 //get home
 const home = async (req, res) => {
   try {
-    console.log("hello man i am the home page ");
+    console.log("Inside the Home page");
     const products = await productCollection
       .find({ $and: [{ availability: true }, { softdelete: true }] })
       .limit(10);
