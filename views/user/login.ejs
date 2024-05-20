@@ -7,6 +7,14 @@
         <img src="/assets/pictures/login img.avif" alt="Picture" class="w-100" >
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="p-3 mb-4" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <h5 >Copy test Email: <span  id="testEmail">testuser@gmail.com</span>
+            <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard('testEmail')">Copy</button>
+          </h5>
+          <h5 >Copy test Password: <span  id="testPassword">Pass369</span>
+            <button class="btn btn-outline-secondary btn-sm" onclick="copyToClipboard('testPassword')">Copy</button>
+          </h5>
+        </div>
         <form id="login-Form" action="/login" method="post">
           <div class="divider d-flex align-items-center my-4">
             <h3 class="text-center text-info fw-bold">Login</h3>
@@ -71,3 +79,14 @@
 </section>
 
 <script src="/javascripts/login.js"></script>
+<script>
+  function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    const textToCopy = element.innerText;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert(`Copied: ${textToCopy}`);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
+</script>

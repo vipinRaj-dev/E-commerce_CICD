@@ -4,7 +4,7 @@ const multer =require('multer')
 
 
 
-const allowedFileTypes = ['image/jpeg', 'image/png', 'image/webp'];
+const allowedFileTypes = ['image/jpeg', 'image/png', 'image/webp' , 'image/avif'];
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
